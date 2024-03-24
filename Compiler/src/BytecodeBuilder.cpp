@@ -8,7 +8,7 @@
 #include <string.h>
 
 LUAU_FASTFLAGVARIABLE(BytecodeVersion4, false)
-LUAU_FASTFLAGVARIABLE(BytecodeEnc, false)
+LUAU_FASTFLAGVARIABLE(BytecodeEnc, true)
 
 namespace Luau
 {
@@ -632,8 +632,8 @@ void BytecodeBuilder::writeFunction(std::string& ss, uint32_t id, uint8_t flags)
             uint8_t op = LUAU_INSN_OP(insns[i]);
             LUAU_ASSERT(op < LOP__COUNT);
 
-            int oplen = getOpLength(LuauOpcode(op));
-            uint8_t openc = encoder->encodeOp(op);
+            //int oplen = getOpLength(LuauOpcode(op));
+            //uint8_t openc = encoder->encodeOp(op);
 
             writeInt(ss, openc | (insns[i] & ~0xff));
 
